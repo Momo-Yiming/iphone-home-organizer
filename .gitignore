@@ -1,0 +1,11 @@
+# Explicit allowlist prevents device-specific work files from entering this repository.
+*
+!.gitignore
+!README.md
+!SKILL.md
+!agents/
+!agents/openai.yaml
+!assets/
+!assets/preview.html
+!scripts/
+!scripts/layout.py

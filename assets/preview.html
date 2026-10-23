@@ -1,0 +1,116 @@
+<div id="iphone-layout-skill-preview" class="viz-dotted-background">
+  <style>
+    #iphone-layout-skill-preview{--ink:light-dark(#183126,#f3f6f1);--sub:light-dark(#50675b,#b6c9ba);--screen:light-dark(#d9e5d6,#1e392d);--panel:light-dark(#f2f6f0,#283b31);--folder:light-dark(#9ab6a2,#5b7661);--active:light-dark(#cee5d1,#385b42);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC",sans-serif;padding:14px 4px;box-sizing:border-box}
+    #iphone-layout-skill-preview *{box-sizing:border-box}
+    #iphone-layout-skill-preview .head{max-width:410px;margin:0 auto 12px}
+    #iphone-layout-skill-preview h2{font-size:19px;font-weight:500;margin:0 0 5px}
+    #iphone-layout-skill-preview .meta{font-size:12px;color:var(--sub);line-height:1.5}
+    #iphone-layout-skill-preview .nav{max-width:410px;margin:0 auto 12px;display:flex;gap:4px;flex-wrap:wrap}
+    #iphone-layout-skill-preview button{font:inherit;color:inherit;border:0;background:none;min-height:44px}
+    #iphone-layout-skill-preview .nav button{font-size:12px;padding:3px 8px;border-radius:10px;background:var(--panel)}
+    #iphone-layout-skill-preview .nav button[aria-pressed=true]{background:var(--active)}
+    #iphone-layout-skill-preview .phone{max-width:390px;margin:auto;background:var(--screen);border:6px solid light-dark(#526459,#748979);border-radius:42px;padding:15px 13px 12px;position:relative;isolation:isolate}
+    #iphone-layout-skill-preview .top{display:flex;align-items:center;justify-content:space-between;font-size:11px;min-height:29px}
+    #iphone-layout-skill-preview .island{background:#161b18;width:91px;height:24px;border-radius:20px}
+    #iphone-layout-skill-preview .title-row{display:flex;justify-content:space-between;align-items:center;margin:8px 1px 4px;font-size:14px}
+    #iphone-layout-skill-preview .summary{color:var(--sub);font-size:11px;margin:0 1px 12px}
+    #iphone-layout-skill-preview .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:78px;gap:3px 5px;align-content:start;min-height:483px}
+    #iphone-layout-skill-preview .app,#iphone-layout-skill-preview .folder-button{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px;min-width:0;padding:0 1px}
+    #iphone-layout-skill-preview .icon,#iphone-layout-skill-preview .folder-icon{width:53px;height:53px;border-radius:12px;object-fit:cover;flex:none;overflow:hidden}
+    #iphone-layout-skill-preview .icon-fallback{display:grid;place-items:center;background:var(--active);font-size:18px}
+    #iphone-layout-skill-preview .folder-icon{background:var(--folder);padding:4px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:2px}
+    #iphone-layout-skill-preview .folder-icon img,#iphone-layout-skill-preview .folder-icon span{width:100%;height:100%;border-radius:3px;object-fit:cover;background:var(--active);font-size:7px;display:grid;place-items:center;overflow:hidden}
+    #iphone-layout-skill-preview .label{font-size:11px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    #iphone-layout-skill-preview .dots{display:flex;justify-content:center;gap:6px;height:26px;align-items:center}
+    #iphone-layout-skill-preview .dots i{width:5px;height:5px;border-radius:50%;background:var(--sub);opacity:.4}
+    #iphone-layout-skill-preview .dots i.active{opacity:1}
+    #iphone-layout-skill-preview .dock{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:10px 2px 0;border-radius:20px;background:light-dark(#ffffff6b,#aacbb233)}
+    #iphone-layout-skill-preview .home{width:90px;height:4px;margin:12px auto 0;background:var(--ink);border-radius:5px}
+    #iphone-layout-skill-preview .detail{position:absolute;inset:72px 7px auto;min-height:490px;background:var(--panel);border-radius:23px;padding:14px;z-index:5;box-shadow:0 12px 35px #0003}
+    #iphone-layout-skill-preview .detail[hidden]{display:none}
+    #iphone-layout-skill-preview .detail-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+    #iphone-layout-skill-preview .detail-head strong{font-size:17px;font-weight:500}
+    #iphone-layout-skill-preview .detail .grid{grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:93px;min-height:320px;gap:5px}
+    #iphone-layout-skill-preview .folder-pages{display:flex;justify-content:space-between;align-items:center;font-size:12px;margin-top:4px}
+    #iphone-layout-skill-preview .folder-pages button{padding:0 10px}
+    #iphone-layout-skill-preview .folder-pages button:disabled{opacity:.35}
+    #iphone-layout-skill-preview .facts{font-size:13px;line-height:1.5;margin:14px 0}
+    #iphone-layout-skill-preview .facts>div{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--folder);padding:9px 0}
+    #iphone-layout-skill-preview .facts dt{color:var(--sub)}
+    #iphone-layout-skill-preview .facts dd{margin:0;text-align:right;overflow-wrap:anywhere}
+    #iphone-layout-skill-preview .foot{color:var(--sub);font-size:12px;margin:12px auto 0;max-width:390px}
+    @media(max-width:350px){#iphone-layout-skill-preview .phone{padding-left:9px;padding-right:9px}#iphone-layout-skill-preview .icon,#iphone-layout-skill-preview .folder-icon{width:48px;height:48px}}
+  </style>
+  <div class="head"><h2>桌面整理预览</h2><div class="meta" data-count></div></div>
+  <nav class="nav" data-nav aria-label="桌面分页"></nav>
+  <div class="phone" aria-label="iPhone 桌面方案">
+    <div class="top"><span>预览</span><span class="island" aria-hidden="true"></span><span>只读</span></div>
+    <div class="title-row"><strong data-title></strong><span data-page-number></span></div>
+    <div class="summary" data-summary></div>
+    <div class="grid" data-grid aria-label="当前桌面"></div>
+    <section class="detail" data-detail hidden aria-label="文件夹或应用详情"></section>
+    <div class="dots" data-dots aria-hidden="true"></div>
+    <div class="dock" data-dock aria-label="底部常用应用"></div>
+    <div class="home" aria-hidden="true"></div>
+  </div>
+  <div class="foot">仅为方案预览。功能与使用频率优先；未读取的使用量保持未知。</div>
+  <script type="application/json" data-plan>__PREVIEW_DATA__</script>
+  <script>
+    (()=>{
+      const root=document.getElementById('iphone-layout-skill-preview');
+      const data=JSON.parse(root.querySelector('[data-plan]').textContent);
+      const pages=data.plan.pages;
+      let page=0,folder=null,folderPage=0,selectedApp=null;
+      const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+      const name=k=>data.names[k]||k;
+      function icon(k){const src=data.icons[k];return src?`<img class="icon" src="${src}" alt="">`:`<span class="icon icon-fallback">${esc(name(k).slice(0,1))}</span>`;}
+      function app(k){return `<button type="button" class="app cursor-interaction" data-app="${esc(k)}" aria-label="${esc(name(k))}">${icon(k)}<span class="label">${esc(name(k))}</span></button>`;}
+      function tile(item,index){
+        if(item.empty)return '<span aria-hidden="true"></span>';
+        if(item.app)return app(item.app);
+        return `<button type="button" class="folder-button cursor-interaction" data-folder="${index}" aria-label="打开${esc(item.folder)}，${item.apps.length} 个入口"><span class="folder-icon">${Array.from({length:9},(_,i)=>item.apps[i]?data.icons[item.apps[i]]?`<img src="${data.icons[item.apps[i]]}" alt="">`:`<span>${esc(name(item.apps[i]).slice(0,1))}</span>`:'<span></span>').join('')}</span><span class="label">${esc(item.folder)}</span></button>`;
+      }
+      function detail(){
+        const el=root.querySelector('[data-detail]');el.hidden=folder===null;
+        if(selectedApp!==null){
+          el.hidden=false;
+          const use=data.usage[selectedApp]||{};
+          const appName=esc(name(selectedApp));
+          const locate=data.plan.dock.some(item=>item===selectedApp||item.app===selectedApp)?'Dock':
+            pages[page].items.some(item=>item.app===selectedApp)?pages[page].title||`第 ${page+1} 页`:
+            folder!==null?(folder.startsWith('d:')?data.plan.dock[Number(folder.slice(2))]:pages[page].items[Number(folder.slice(2))]).folder:'其他页面';
+          el.innerHTML=`<div class="detail-head"><strong>${appName}</strong><button type="button" class="cursor-interaction" data-action="back">返回</button></div><div style="display:flex;justify-content:center;margin:24px 0">${icon(selectedApp)}</div><dl class="facts"><div><dt>建议位置</dt><dd>${esc(locate)}</dd></div><div><dt>使用时长</dt><dd>${use.minutes==null?'尚未读取':esc(use.minutes)+' 分钟'}</dd></div><div><dt>拿起后首用</dt><dd>${use.pickups==null?'尚未读取':esc(use.pickups)+' 次'}</dd></div><div><dt>原有入口</dt><dd>${(data.locations[selectedApp]||[]).map(esc).join('；')}</dd></div></dl>`;
+          return;
+        }
+        if(folder===null)return;
+        const item=folder.startsWith('d:')?data.plan.dock[Number(folder.slice(2))]:pages[page].items[Number(folder.slice(2))],total=Math.ceil(item.apps.length/9);
+        folderPage=Math.min(folderPage,total-1);
+        el.innerHTML=`<div class="detail-head"><strong>${esc(item.folder)}</strong><button type="button" class="cursor-interaction" data-action="close">关闭</button></div><div class="grid">${item.apps.slice(folderPage*9,folderPage*9+9).map(app).join('')}</div><div class="folder-pages"><button type="button" class="cursor-interaction" data-action="prev" ${folderPage===0?'disabled':''}>上一页</button><span>${folderPage+1} / ${total}</span><button type="button" class="cursor-interaction" data-action="next" ${folderPage===total-1?'disabled':''}>下一页</button></div>`;
+      }
+      function render(){
+        root.querySelector('[data-count]').textContent=`${pages.length} 页 · ${data.unique} 个应用 · ${data.entries} 个入口`;
+        root.querySelector('[data-nav]').innerHTML=pages.map((p,i)=>`<button type="button" class="cursor-interaction" data-page="${i}" aria-pressed="${i===page}">${esc(p.title||`第 ${i+1} 页`)}</button>`).join('');
+        root.querySelector('[data-title]').textContent=pages[page].title||`第 ${page+1} 页`;
+        root.querySelector('[data-page-number]').textContent=`${page+1} / ${pages.length}`;
+        root.querySelector('[data-summary]').textContent=`${pages[page].items.filter(i=>i.app).length} 个直接打开 · ${pages[page].items.filter(i=>i.folder).length} 个文件夹`;
+        root.querySelector('[data-grid]').innerHTML=pages[page].items.map((item,i)=>tile(item,`p:${i}`)).join('');
+        root.querySelector('[data-dock]').innerHTML=data.plan.dock.map((item,i)=>typeof item==='string'?app(item):tile(item,`d:${i}`)).join('');
+        root.querySelector('[data-dots]').innerHTML=pages.map((_,i)=>`<i class="${i===page?'active':''}"></i>`).join('');
+        detail();
+      }
+      root.addEventListener('click',e=>{
+        const button=e.target.closest('button');if(!button||!root.contains(button))return;
+        if(button.dataset.page!==undefined){page=Number(button.dataset.page);folder=null;selectedApp=null;}
+        else if(button.dataset.folder!==undefined){folder=button.dataset.folder;folderPage=0;selectedApp=null;}
+        else if(button.dataset.action==='close'){folder=null;selectedApp=null;}
+        else if(button.dataset.action==='back'){selectedApp=null;}
+        else if(button.dataset.action==='prev'){folderPage--;}
+        else if(button.dataset.action==='next'){folderPage++;}
+        else if(button.dataset.app!==undefined){selectedApp=button.dataset.app;}
+        render();
+      });
+      root.addEventListener('keydown',e=>{if(e.key==='Escape'&&(folder!==null||selectedApp!==null)){folder=null;selectedApp=null;render();}});
+      render();
+    })();
+  </script>
+</div>
